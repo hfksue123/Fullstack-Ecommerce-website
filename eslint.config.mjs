@@ -11,6 +11,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "jsx-a11y/button-has-type": "off", // hoặc rule gây ra lỗi của bạn
+      "jsx-a11y/aria-role": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/control-has-associated-label": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

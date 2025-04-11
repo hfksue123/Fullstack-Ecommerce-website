@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+> npx create-next-app@latest .
+> npx shadcn@latest init        
+> npx shadcn@latest add button tooltip accordion radio-group label card
+> npm install react-icons --save
+> npm install @clerk/nextjs
+> npx sanity@latest init (All Yes + Clean project...)
+> npm install motion
+> npm i dayjs
+> npm install react-is
+> npm install zustand --legacy-peer-deps
+> npm install react-hot-toast (Pop-up message `https://react-hot-toast.com/docs`) 
 
-## Getting Started
 
-First, run the development server:
+import { cn } from "@/lib/utils"
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clerk: để tạo form đăng nhập
+- Chạy lệnh cài đặt
+- Tạo file .env để lưu KEY
+- Tạo file middleware.ts và copy paste vào
+2. Sanity: 
+- Cài đặt Sanity vào dự án
+- Tạo 1 folder (client) và bỏ `shop`, `layout.tsx` và `page.tsx` vào đó rồi tạo 1 file layout.tsx mơi ở ngoài và setting lại cả 2 file
+- Truy cập `localhost:3000/studio` nếu thành công sẽ vào thẳng giao diện đăng nhập vào sanity, tiếp tục đăng nhập và code thêm những content bên trong folder `sanity/schemaTypes/` để tạo những mô hình để upload dữ liệu lên trang web dễ dàng.
+3. Cài Zustand: (Cấu trúc chức năng cho các button)
+- Tất cả cài đặt setup bên trong `store.ts`
+4. Toast: (pop-up message)
+- Cấu trúc file trong layout.tsx
++ AddToCartButton.tsx: pop-up message khi click vào button
++ CartIcon.tsx: number của cart tăng theo số món đồ user đã add.
++  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+, Shadcn, Icon-React, Button, Tooltip, 
