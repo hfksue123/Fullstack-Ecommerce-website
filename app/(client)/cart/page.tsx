@@ -1,8 +1,9 @@
 "use client";
 import useStore from "@/store";
-import { useAuth, useUser } from "@clerk/nextjs";
-import { useState } from "react";
-import { Address } from "../../../sanity.types";
+import { useAuth } from "@clerk/nextjs";
+// import { useUser } from "@clerk/nextjs";
+// import { useState } from "react";
+// import { Address } from "../../../sanity.types";
 import Container from "../../../components/Container";
 import NoAccess from "../../../components/NoAccess";
 import EmptyCart from "../../../components/EmptyCart";
@@ -11,20 +12,20 @@ import { Title } from "../../../components/ui/text";
 
 const CartPage = () => {
   const {
-    deleteCartProduct,
-    getTotalPrice,
-    getItemCount,
-    getSubTotalPrice,
-    resetCart,
+    // deleteCartProduct,
+    // getTotalPrice,
+    // getItemCount,
+    // getSubTotalPrice,
+    // resetCart,
   } = useStore();
 
-  const [isClient, setIsClient] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const groupedItems = useStore((state) => state.getGroupedItems());
   const { isSignedIn } = useAuth();
-  const { user } = useUser();
-  //   const [addresses, setAddresses] = useState<ADDRESS_QUERYResult | null>(null);
-  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+  // const { user } = useUser();
+  // const [addresses, setAddresses] = useState<ADDRESS_QUERYResult | null>(null);
+  // const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   return (
     <div className="bg-gray-50 pb-52 md:pb-10">

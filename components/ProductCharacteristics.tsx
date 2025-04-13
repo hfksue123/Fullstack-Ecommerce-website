@@ -13,42 +13,43 @@ const ProductCharacteristics = async ({
 }: {
   product: Product | null | undefined;
 }) => {
-  const brand = await getBrand(product?.slug?.current as string);
+  const brand = await getBrand(product?.slug?.current || "");
+
   return (
-    <Accordion type="single" collapsible>
+    <Accordion type="single" collapsible className="text-sm">
       <AccordionItem value="item-1">
-        <AccordionTrigger>{product?.name}: Characteristics</AccordionTrigger>
-        <AccordionContent>
-            <div>
-          <p className="flex items-center justify-between">
-            Brand:{" "}
-            {brand && (
-              <span className="font-semibold tracking-wide">
-                {brand[0]?.brandName}
-              </span>
-            )}
-          </p>
-          <p className="flex items-center justify-between">
-            Collection:{" "}
-            <span className="font-semibold tracking-wide">2025</span>
-          </p>
-          <p className="flex items-center justify-between">
-            Type:{" "}
-            <span className="font-semibold tracking-wide">
-              {product?.variant}
-            </span>
-          </p>
-          <p className="flex items-center justify-between">
-            Stock:{" "}
-            <span className="font-semibold tracking-wide">
-              {product?.stock ? "Available" : "Out of Stock"}
-            </span>
-          </p>
-          </div>
+        <AccordionTrigger>
+          {product?.name} — Characteristics
+        </AccordionTrigger>
+        <AccordionContent className="space-y-2 mt-2">
+          <CharacteristicItem label="Brand" value={brand?.[0]?.brandName} />
+          <CharacteristicItem label="Collection" value="2025" />
+          <CharacteristicItem label="Type" value={product?.variant} />
+          <CharacteristicItem
+            label="Stock"
+            value={
+              product?.stock && product.stock > 0 ? "Available" : "Out of Stock"
+            }
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
 };
+
+const CharacteristicItem = ({
+  label,
+  value,
+}: {
+  label: string;
+  value?: string | number | null;
+}) => (
+  <p className="flex justify-between text-gray-700">
+    <span>{label}:</span>
+    <span className="font-semibold tracking-wide">
+      {value || "—"}
+    </span>
+  </p>
+);
 
 export default ProductCharacteristics;

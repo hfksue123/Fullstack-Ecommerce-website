@@ -23,7 +23,16 @@
   --color-shop-lighter-bg: #f1f3f8;
   --color-shop-light-text: #686e7d;
   --color-shop-lighter-text: #ababab;
-}
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }  
+  }
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

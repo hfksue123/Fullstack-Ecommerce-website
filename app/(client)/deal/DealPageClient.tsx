@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Container from '../../../components/Container';
-import { Title } from '../../../components/ui/text';
-import ProductCard from '../../../components/ProductCard';
+import React from "react";
+import Container from "../../../components/Container";
+import { Title } from "../../../components/ui/text";
+import ProductCard from "../../../components/ProductCard";
 
 const DealPageClient = ({ products }) => {
   return (

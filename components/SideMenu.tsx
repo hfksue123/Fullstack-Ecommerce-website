@@ -1,12 +1,12 @@
 import React from 'react'
-import { FC } from "react";
 import Logo from './Logo';
 import { RiCloseLargeFill } from "react-icons/ri";
 import Link from 'next/link';
 import { headerData } from '../constants/data'
-import { usePathname } from 'next/navigation';
 import SocialMedia from './SocialMedia';
 import { useOutsideClick } from './hooks/useOutsideClick';
+// import { usePathname } from 'next/navigation';
+// import { FC } from "react";
 
 interface SidebarProps {
   isOpen: boolean;

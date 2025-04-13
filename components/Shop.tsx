@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { BRANDS_QUERYResult, Category, Product } from "../sanity.types";
 import Container from "./Container";
 import { Title } from "./ui/text";
@@ -30,7 +30,7 @@ const Shop = ({ categories, brands }: Props) => {
     brandParams || null
   );
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       let minPrice = 0;
@@ -40,30 +40,32 @@ const Shop = ({ categories, brands }: Props) => {
         minPrice = min;
         maxPrice = max;
       }
-      const query = `
-        *[_type == 'product' 
+  
+      const query = `*[_type == 'product' 
         && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id)) 
         && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id)) 
-        && price >= $minPrice && price <= $maxPrice 
-        ] | order(name asc) {
-        ..., "categories": categories[]->title
-        }
-        `;
-      const data = await client.fetch(
-        query,
-        { selectedCategory, selectedBrand, minPrice, maxPrice },
-        { next: { revalidate: 0 } }
-      );
+        && price >= $minPrice && price <= $maxPrice] | order(name asc) {
+          ..., "categories": categories[]->title
+        }`;
+  
+      const data = await client.fetch(query, {
+        selectedCategory,
+        selectedBrand,
+        minPrice,
+        maxPrice,
+      });
+  
       setProducts(data);
     } catch (error) {
       console.log("Shop product fetching error", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory, selectedBrand, selectedPrice]);
+  
   useEffect(() => {
     fetchProducts();
-  }, [selectedCategory, selectedBrand, selectedPrice]);
+  }, [fetchProducts]);  
 
   return (
     <div className="border-t">

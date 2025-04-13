@@ -1,6 +1,6 @@
 > npx create-next-app@latest .
 > npx shadcn@latest init        
-> npx shadcn@latest add button tooltip accordion radio-group label card
+> npx shadcn@latest add button tooltip accordion radio-group label card command popover
 > npm install react-icons --save
 > npm install @clerk/nextjs
 > npx sanity@latest init (All Yes + Clean project...)
